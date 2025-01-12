@@ -53,9 +53,14 @@
             <h1 class="text-5xl font-semibold mb-4 text-white">Hello, I'm RollMyst</h1>
             <p class="text-lg max-w-2xl mx-auto text-gray-400">I'm a passionate developer who loves creating innovative solutions and beautiful user experiences. Welcome to my portfolio!</p>
             <div class="space-x-4 mt-6">
-                <button class="btn bg-blue-600 text-white px-6 py-3 rounded-full" hx-get="/about.html" hx-swap="outerHTML">About Me</button>
-                <button class="btn bg-gray-700 text-white px-6 py-3 rounded-full" hx-get="/projects.html" hx-swap="outerHTML">My Work</button>
+                <button class="btn bg-blue-600 text-white px-6 py-3 rounded-full" hx-get="/about.html" hx-target="#content" hx-swap="outerHTML">About Me</button>
+                <button class="btn bg-gray-700 text-white px-6 py-3 rounded-full" hx-get="/projects.html" hx-target="#content" hx-swap="outerHTML">My Work</button>
             </div>
+        </section>
+
+        <!-- Dynamic Content Section -->
+        <section id="content" class="min-h-screen flex items-center justify-center px-4 text-center">
+            <p class="text-gray-400">Click the buttons above to load content dynamically.</p>
         </section>
     </div>
 
