@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello, I'm RollMyst – Portfolio</title>
-    <meta name="description" content="Welcome to my portfolio! I'm RollMyst and i'm a coder from the United Kingdom and well I think my work speaks for itself with how messy the code is, but working code is good code in my books right?">    
+    <meta name="description" content="Welcome to my portfolio! I'm RollMyst and I'm a coder from the United Kingdom and well I think my work speaks for itself with how messy the code is, but working code is good code in my books, right?">
     <link rel="icon" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/svgs/solid/user.svg" type="image/svg+xml">
-    
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Particles.js for Interactive Background Effects -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org"></script>
+
     <style>
-        /* Custom styles */
         body {
             font-family: 'Poppins', sans-serif;
             color: #fff;
@@ -25,91 +27,10 @@
             overflow-x: hidden;
         }
 
-        /* Dark mode background */
         .bg-custom {
             background-color: #111;
         }
 
-        /* Full-page Portal Transition */
-        .portal-transition {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background-color: #4e3eff;
-            z-index: 50;
-            transition: width 1s, height 1s, top 1s, left 1s;
-        }
-
-        .portal-transition.active {
-            width: 100vw;
-            height: 100vh;
-            top: 0;
-            left: 0;
-        }
-
-        /* Hidden sections initially */
-        .section {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 1s ease, visibility 1s;
-        }
-
-        .section.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Code wheel animation */
-        .code-wheel {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-            margin: auto;
-            animation: rotateWheel 10s infinite linear;
-        }
-
-        .code-wheel .inner-circle {
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.3);
-            z-index: 1;
-        }
-
-        .code-wheel span {
-            position: absolute;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #fff;
-        }
-
-        .code-wheel span:nth-child(1) { transform: rotate(0deg) translateY(-90px); }
-        .code-wheel span:nth-child(2) { transform: rotate(45deg) translateY(-90px); }
-        .code-wheel span:nth-child(3) { transform: rotate(90deg) translateY(-90px); }
-        .code-wheel span:nth-child(4) { transform: rotate(135deg) translateY(-90px); }
-        .code-wheel span:nth-child(5) { transform: rotate(180deg) translateY(-90px); }
-        .code-wheel span:nth-child(6) { transform: rotate(225deg) translateY(-90px); }
-        .code-wheel span:nth-child(7) { transform: rotate(270deg) translateY(-90px); }
-        .code-wheel span:nth-child(8) { transform: rotate(315deg) translateY(-90px); }
-
-        /* Animation for rotating the wheel */
-        @keyframes rotateWheel {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Button hover effects */
         .btn {
             transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
         }
@@ -125,21 +46,21 @@
     <!-- Particles Background -->
     <div id="particles-js" class="absolute top-0 left-0 w-full h-full z-0"></div>
 
-    <!-- Portal Transition Overlay -->
-    <div id="portal" class="portal-transition"></div>
-
     <!-- Main Content -->
     <div class="relative z-10">
-        
         <!-- Header Section -->
         <section class="min-h-screen flex flex-col items-center justify-center text-center space-y-6 px-4">
             <h1 class="text-5xl font-semibold mb-4 text-white">Hello, I'm RollMyst</h1>
             <p class="text-lg max-w-2xl mx-auto text-gray-400">I'm a passionate developer who loves creating innovative solutions and beautiful user experiences. Welcome to my portfolio!</p>
             <div class="space-x-4 mt-6">
-                <button id="aboutBtn" class="btn bg-blue-600 text-white px-6 py-3 rounded-full">About Me</button>
-                <button id="projectsBtn" class="btn bg-gray-700 text-white px-6 py-3 rounded-full">My Work</button>
+                <button class="btn bg-blue-600 text-white px-6 py-3 rounded-full" hx-get="/about" hx-target="#content" hx-swap="innerHTML">About Me</button>
+                <button class="btn bg-gray-700 text-white px-6 py-3 rounded-full" hx-get="/projects" hx-target="#content" hx-swap="innerHTML">My Work</button>
             </div>
         </section>
+
+        <!-- Dynamic Content Section -->
+        <section id="content" class="min-h-screen flex items-center justify-center px-4 text-center">
+            <p class="text-gray-400">Click the buttons above to load content dynamically.</p>
         </section>
     </div>
 
@@ -211,7 +132,6 @@
             },
             retina_detect: true
         });
-
     </script>
 
 </body>
